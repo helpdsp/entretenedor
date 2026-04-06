@@ -37,4 +37,14 @@ para la planificación.
 Confirma que se crearon carpetas en `planning/sprints/sprint-XX/`.
 Muestra al usuario: número de sprints, goals, total de stories y tareas.
 
+**Formato de tasks.md mejorado:** Las tareas ahora incluyen contexto arquitectónico:
+
+- **RF**: Requisito Funcional del PRD (ej: RF-08)
+- **Component**: Componente/página específico (ej: TrackDetailPage, NodeGraph)
+- **Route**: Ruta del PRD §6.4 (ej: /tracks/:trackId, /dashboard) o "—" si es componente interno
+- **Location**: Ruta sugerida del archivo (ej: src/pages/TrackDetailPage.tsx)
+
+Si el script reporta warnings sobre tareas sin contexto arquitectónico, revisa `sprint-plan.md`
+y el PRD §6.4 para asegurar que cada tarea frontend/backend tenga RF, component, y route definidos.
+
 Siguiente acción: `start_sprint --sprint 1`

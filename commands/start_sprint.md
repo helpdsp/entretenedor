@@ -43,9 +43,15 @@ node scripts/start-sprint.js --sprint N
 ## Orden de trabajo recomendado
 
 1. Leer plan del sprint y dependencias técnicas en `sprint-goal.md`.
-2. Ordenar `tasks.md` por dependencias reales (no ciegamente por fila).
-3. Implementar y **marcar `done`** en `tasks.md` solo cuando la tarea esté verificable.
-4. `npm run gate` en `web/` cuando el sprint toque frontend (o el paquete que corresponda).
+2. Leer `tasks.md` — las columnas incluyen contexto arquitectónico:
+   - **RF**: el requisito funcional del PRD que esta tarea implementa
+   - **Component**: nombre del componente o página (ej: TrackDetailPage, NodeGraph)
+   - **Route**: ruta exacta según PRD §6.4 donde se implementa (ej: /tracks/:trackId, /dashboard)
+   - **Location**: ruta sugerida del archivo en el proyecto
+3. Ordenar `tasks.md` por dependencias reales (no ciegamente por fila).
+4. **CRÍTICO**: usar la columna Route/Component para implementar en la ubicación correcta (ej: NodeGraph va en TrackDetailPage con ruta /tracks/:trackId, NO en /dashboard).
+5. Implementar y **marcar `done`** en `tasks.md` solo cuando la tarea esté verificable.
+6. `npm run gate` en `web/` cuando el sprint toque frontend (o el paquete que corresponda).
 
 ## Presentación breve al usuario
 
