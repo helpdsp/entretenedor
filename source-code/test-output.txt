@@ -1,0 +1,12 @@
+9:45:04 AM [vite] warning: `esbuild` option was specified by "vite:react-babel" plugin. This option is deprecated, please use `oxc` instead.
+9:45:04 AM [vite] warning: `optimizeDeps.esbuildOptions` option was specified by "vite:react-babel" plugin. This option is deprecated, please use `optimizeDeps.rolldownOptions` instead.
+Both esbuild and oxc options were set. oxc options will be used and esbuild options will be ignored. The following esbuild options were set: `{ jsx: 'automatic', jsxImportSource: undefined }`
+
+ RUN  v4.1.2 /home/lancelot/Desktop/vision-framework/source-code
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  09:45:04
+   Duration  1.17s (transform 55ms, setup 68ms, import 205ms, tests 298ms, environment 485ms)
+
