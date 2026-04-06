@@ -46,11 +46,13 @@ node scripts/generate-skills.js --ide cursor claude copilot
 
 ### 3. Ejecutar `init` y comenzar
 
-```bash
-npm run init
+Escribe el comando `init` en tu agente IDE (Cursor, Claude, Copilot, etc.):
+
+```
+init
 ```
 
-El comando `init` te preguntará:
+El agente te preguntará:
 
 - ¿Es reverse engineering? (¿partes de código existente?)
 - ¿Descargar Spec Kit y Agency Agents? (recomendado: **sí**)
