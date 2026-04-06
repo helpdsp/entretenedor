@@ -1,1 +1,0 @@
-../../.agents/workflows/reset_project.md

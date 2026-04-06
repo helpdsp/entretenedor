@@ -40,7 +40,8 @@
     "status:web": "node scripts/status-web-server.js",
     "check:scripts": "node scripts/check-scripts.js",
     "test:local": "node --test tests/status-summary.test.js tests/matrix-client.test.js tests/generate-brief-preconditions.test.js tests/reset-project.test.js tests/clarification.test.js",
-    "mcp:matrix": "node mcp/matrix-mcp-server.mjs"
+    "mcp:matrix": "node mcp/matrix-mcp-server.mjs",
+    "setup:ide": "node scripts/generate-skills.js --ide cursor claude opencode copilot antigravity"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.5",

@@ -1,19 +1,65 @@
-﻿# __PROJECT_NAME__
+﻿# **PROJECT_NAME**
 
 Plantilla local-first para ejecutar el flujo VISION completo (brief → spec → sprints → ejecución)
 sin depender de matriz.
 
 Basado en:
+
 - **Spec Kit** — [github/spec-kit](https://github.com/github/spec-kit): templates de especificación
 - **Agency Agents** — [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents): roles de agente por especialidad
 
 ---
 
-## Cómo se usan los comandos
+## Quick Start (3 pasos)
 
-Los comandos de este proyecto se escriben **en la ventana de agente del IDE**
-(Cursor, Claude Code, Gemini CLI, GitHub Copilot, etc.).
-No son comandos de terminal — el agente lee `AGENTS.md`. **Cursor** carga `.cursor/rules/vision-index.mdc`. **Claude Code** carga `CLAUDE.md`, la regla `.claude/rules/vision-workflow.md` y puede usar slash commands en `.claude/commands/` (p. ej. `/generate_brief`), que delegan en `commands/`.
+### 1. Clonar y preparar
+
+```bash
+git clone https://github.com/Nexus360-tech/vision.git mi-proyecto
+cd mi-proyecto
+npm install
+```
+
+### 2. Configurar tu IDE (opcional)
+
+Genera los archivos de configuración para tu IDE específico:
+
+```bash
+# Generar configuración para TODOS los IDEs (cursor, claude, opencode, copilot, antigravity)
+npm run setup:ide
+
+# O generar para IDEs específicos usando el script directamente
+node scripts/generate-skills.js --ide cursor
+node scripts/generate-skills.js --ide claude
+node scripts/generate-skills.js --ide cursor claude copilot
+```
+
+| IDE                | Archivos generados                     |
+| ------------------ | -------------------------------------- |
+| **Cursor**         | `.cursor/rules/vision-index.mdc`       |
+| **Claude Code**    | `.claude/commands/` + `.claude/rules/` |
+| **GitHub Copilot** | `.github/copilot-instructions.md`      |
+| **OpenCode**       | `.opencode/commands/`                  |
+| **Antigravity**    | `.agents/workflows/`                   |
+
+**Nota:** Estos archivos son locales (no se suben a git) y se regeneran cuando lo necesites.
+
+### 3. Ejecutar `init` y comenzar
+
+```bash
+npm run init
+```
+
+El comando `init` te preguntará:
+
+- ¿Es reverse engineering? (¿partes de código existente?)
+- ¿Descargar Spec Kit y Agency Agents? (recomendado: **sí**)
+
+Una vez completado:
+
+1. Coloca tus documentos en `refdocs/`
+2. Ejecuta `generate_brief` en tu IDE
+3. Sigue el flujo: `generate_spec_kit` → `generate_sprints` → `start_sprint --sprint 1`
 
 **Declaración de agentes:** en cada actividad del flujo, el agente debe indicar qué rol(es) de [Agency Agents](https://github.com/msitarzewski/agency-agents) está aplicando; la norma y el formato están en `commands/agent_declaration.md`.
 
@@ -26,32 +72,11 @@ y reporta el resultado en el chat.
 
 Para ejecutar desde terminal (opcional, modo developer):
 
-```powershell
+```bash
 node scripts/generate-brief.js
 # o usando los wrappers de bin/
-bin\generate_brief
+bin/generate_brief
 ```
-
----
-
-## Setup inicial
-
-```powershell
-Copy-Item -Recurse -Path .\blank_project -Destination .\projects\mi-proyecto
-cd .\projects\mi-proyecto
-npm install
-Copy-Item .env.example .env
-```
-
-Configura en `.env` según necesidad:
-
-- **`LOCAL_IDE_AI_COMMAND`** — **opcional**. Puente CLI que lea/escriba JSON para automatizar brief/spec sin agente. La **IA local** del flujo VISION en IDE es el **agente** (Cursor, etc.) que ejecuta los comandos de `commands/`; no hace falta esta variable para eso.
-- `LOCAL_IDE_AI_TIMEOUT_MS` — (opcional) timeout en ms del CLI anterior
-
-Para modo conectado a matriz, agrega también:
-
-- `MATRIX_BASE_URL`
-- `MATRIX_API_KEY`
 
 ---
 
@@ -117,7 +142,7 @@ Ejemplo de `answers.json` para `clarify_brief`:
 
 ## Spec Kit
 
-Los templates oficiales de [github/spec-kit](https://github.com/github/spec-kit) se descargan automáticamente al correr `init`.
+Los templates oficiales de [github/spec-kit](https://github.com/github/spec-kit) se descargan al correr `init` (si respondes "sí" a la pregunta).
 También se pueden actualizar con:
 
 ```
@@ -136,23 +161,23 @@ spec-kit/
 
 Los artefactos que genera `generate_spec_kit` en `spec-kit/input/`:
 
-| Archivo | Contenido |
-|---|---|
-| `PRD.md` | Casos de uso, flujos, métricas |
-| `technical-spec.md` | Stack, arquitectura, decisiones |
-| `api-spec.yaml` | Definición de endpoints |
-| `data-model.md` | Modelo de datos |
-| `epics.md` | Épicas del producto |
-| `stories.md` | User stories con criterios de aceptación |
-| `sprint-plan.md` | Distribución de stories por sprint |
-| `test-plan.md` | Estrategia QA por capa |
+| Archivo             | Contenido                                |
+| ------------------- | ---------------------------------------- |
+| `PRD.md`            | Casos de uso, flujos, métricas           |
+| `technical-spec.md` | Stack, arquitectura, decisiones          |
+| `api-spec.yaml`     | Definición de endpoints                  |
+| `data-model.md`     | Modelo de datos                          |
+| `epics.md`          | Épicas del producto                      |
+| `stories.md`        | User stories con criterios de aceptación |
+| `sprint-plan.md`    | Distribución de stories por sprint       |
+| `test-plan.md`      | Estrategia QA por capa                   |
 
 ---
 
 ## Agency Agents
 
 Los roles de agente del proyecto vienen de [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents).
-Se descargan automáticamente al correr `init`. También se pueden actualizar con:
+Se descargan al correr `init` (si respondes "sí" a la pregunta). También se pueden actualizar con:
 
 ```
 update_agency_agents
@@ -174,13 +199,13 @@ agency-agents/
 
 Los roles activos por defecto se definen en `agent-roles.json`:
 
-| Área | Rol principal |
-|---|---|
-| Frontend | `engineering-frontend-developer` |
-| Backend | `engineering-backend-architect` |
-| QA | `testing-reality-checker` |
-| Deploy | `engineering-devops-automator` |
-| PM | `project-management-senior-project-manager` |
+| Área     | Rol principal                               |
+| -------- | ------------------------------------------- |
+| Frontend | `engineering-frontend-developer`            |
+| Backend  | `engineering-backend-architect`             |
+| QA       | `testing-reality-checker`                   |
+| Deploy   | `engineering-devops-automator`              |
+| PM       | `project-management-senior-project-manager` |
 
 ---
 
@@ -196,9 +221,11 @@ planning/
   clarifications/           ← respuestas de sesiones de clarificación
   sprints/sprint-XX/        ← tareas, stories, QA por sprint
 AGENTS.md                   ← instrucciones para el agente del IDE
-.cursor/rules/vision-index.mdc  ← índice del flujo en Cursor (always-on)
+commands/                   ← definiciones de comandos (fuente de verdad)
 agent-roles.json            ← mapeo de roles por área
 ```
+
+**Nota:** Los archivos de configuración IDE (`.cursor/`, `.claude/`, `.github/copilot-instructions.md`, etc.) se generan localmente y no se incluyen en git.
 
 ---
 
@@ -221,7 +248,7 @@ npm run status:web
 
 ## Flujo conectado a matriz (opcional)
 
-```powershell
+```bash
 npm run connect_project -- --project-id "<ID>" --workspace-id "<WS>" --matrix-url "http://localhost:4000"
 npm run matrix:authorize -- --authorized-by "<tu-nombre>"
 # Si matriz no responde, los reportes se encolan en .matrix/pending-reports.ndjson
@@ -234,7 +261,7 @@ npm run matrix:sync
 
 Todos los comandos tienen equivalente `npm run` para uso desde terminal:
 
-```powershell
+```bash
 npm run clarify_brief
 npm run generate_brief
 npm run generate_spec_kit
@@ -249,9 +276,9 @@ npm run update_agency_agents
 
 Y como wrappers directos en `bin/`:
 
-```powershell
-bin\generate_brief
-bin\start_sprint --sprint 1
+```bash
+bin/generate_brief
+bin/start_sprint --sprint 1
 ```
 
 ---
@@ -265,3 +292,11 @@ npm run mcp:matrix
 Herramientas MCP disponibles: `matrix_healthcheck`, `matrix_connect_project`,
 `matrix_authorize_project`, `matrix_validate_briefing`, `matrix_generate_spec_kit`,
 `matrix_report_stats`, `matrix_sync_pending_reports`.
+
+---
+
+## Referencias
+
+- Documentación completa: `GUIA_COMPLETA_VISION.md`
+- Comandos del agente: `AGENTS.md`
+- Estructura de comandos: `commands/README.md`

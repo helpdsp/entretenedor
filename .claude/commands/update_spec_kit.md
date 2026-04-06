@@ -1,1 +1,0 @@
-../../.agents/workflows/update_spec_kit.md

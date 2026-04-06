@@ -1,1 +1,0 @@
-../../.agents/workflows/clarify_spec_kit.md
