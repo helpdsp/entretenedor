@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "matrix-local-bridge": {
+      "command": "node",
+      "args": [
+        "mcp/matrix-mcp-server.mjs"
+      ],
+      "env": {
+        "MATRIX_BASE_URL": "https://matriz.tu-dominio.com",
+        "MATRIX_API_KEY": "reemplazar_token"
+      }
+    }
+  }
+}

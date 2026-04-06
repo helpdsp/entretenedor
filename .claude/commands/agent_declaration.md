@@ -1,0 +1,1 @@
+../../.agents/workflows/agent_declaration.md

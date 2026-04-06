@@ -1,0 +1,1 @@
+../../.agents/workflows/generate_skills.md

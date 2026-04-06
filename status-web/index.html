@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VISION Local Status</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-glow"></div>
+    <main class="app">
+      <header class="glass hero">
+        <p class="eyebrow">VISION</p>
+        <h1>Local Workflow Status</h1>
+        <p id="modeBadge" class="mode-badge">Loading mode...</p>
+        <p id="reverseQuestion" class="muted">-</p>
+      </header>
+
+      <section class="grid">
+        <article class="glass card">
+          <h2>Workflow</h2>
+          <p id="workflowStatus" class="status-pill">-</p>
+          <ul id="workflowFacts" class="facts"></ul>
+        </article>
+
+        <article class="glass card">
+          <h2>Next Action</h2>
+          <pre id="nextCommand" class="command">-</pre>
+          <p id="nextReason" class="muted">-</p>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="glass card">
+          <h2>Setup Checklist</h2>
+          <ul id="checklist" class="list"></ul>
+        </article>
+
+        <article class="glass card">
+          <h2>Clarifications</h2>
+          <ul id="clarificationsStatus" class="list"></ul>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="glass card">
+          <h2>Matrix Connection</h2>
+          <ul id="matrixStatus" class="list"></ul>
+        </article>
+      </section>
+
+      <section class="glass card">
+        <h2>Current Blockers</h2>
+        <ul id="blockers" class="list"></ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

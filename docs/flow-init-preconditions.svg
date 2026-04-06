@@ -1,0 +1,70 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1f2a44" />
+    </marker>
+    <style>
+      .title { font: 700 34px 'Segoe UI', Arial, sans-serif; fill: #10203d; }
+      .subtitle { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #41506f; }
+      .node { fill: #f7f9ff; stroke: #5d6f99; stroke-width: 2; rx: 16; ry: 16; }
+      .decision { fill: #fff8e8; stroke: #b3872e; stroke-width: 2; }
+      .danger { fill: #fff1f1; stroke: #b94444; stroke-width: 2; }
+      .ok { fill: #f0fff5; stroke: #3d8b5a; stroke-width: 2; }
+      .text { font: 600 18px 'Segoe UI', Arial, sans-serif; fill: #1f2a44; }
+      .small { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #2f3a54; }
+      .label { font: 700 15px 'Segoe UI', Arial, sans-serif; fill: #1f2a44; }
+      .line { stroke: #1f2a44; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="980" fill="#eef3ff" />
+
+  <text x="700" y="55" text-anchor="middle" class="title">VISION - Flujo de Inicio y Precondiciones</text>
+  <text x="700" y="82" text-anchor="middle" class="subtitle">Insumos del usuario en refdocs/ y source-code/, artefactos generados en spec-kit/input/</text>
+
+  <rect class="node" x="500" y="120" width="400" height="90" />
+  <text x="700" y="155" text-anchor="middle" class="text">1) init</text>
+  <text x="700" y="182" text-anchor="middle" class="small">Pregunta inicial: "Este proyecto sera de ingenieria inversa?"</text>
+
+  <polygon class="decision" points="700,250 900,340 700,430 500,340" />
+  <text x="700" y="336" text-anchor="middle" class="text">Reverse engineering?</text>
+  <text x="700" y="360" text-anchor="middle" class="small">yes / no</text>
+
+  <rect class="node" x="130" y="500" width="470" height="120" />
+  <text x="365" y="540" text-anchor="middle" class="text">2A) Rama NO</text>
+  <text x="365" y="568" text-anchor="middle" class="small">Requiere >= 1 archivo en refdocs/</text>
+  <text x="365" y="592" text-anchor="middle" class="small">No requiere source-code/</text>
+
+  <rect class="node" x="800" y="500" width="470" height="120" />
+  <text x="1035" y="540" text-anchor="middle" class="text">2B) Rama YES</text>
+  <text x="1035" y="568" text-anchor="middle" class="small">Requiere >= 1 archivo en refdocs/</text>
+  <text x="1035" y="592" text-anchor="middle" class="small">Requiere >= 1 archivo en source-code/</text>
+
+  <rect class="decision" x="490" y="680" width="420" height="90" rx="16" ry="16" />
+  <text x="700" y="718" text-anchor="middle" class="text">3) generate_brief pre-check</text>
+  <text x="700" y="744" text-anchor="middle" class="small">Valida precondiciones antes de ejecutar</text>
+
+  <rect class="danger" x="130" y="825" width="500" height="110" rx="16" ry="16" />
+  <text x="380" y="865" text-anchor="middle" class="text">Bloqueado</text>
+  <text x="380" y="892" text-anchor="middle" class="small">Error claro + accion concreta</text>
+  <text x="380" y="914" text-anchor="middle" class="small">"agrega refdocs/source-code y reintenta"</text>
+
+  <rect class="ok" x="770" y="825" width="500" height="110" rx="16" ry="16" />
+  <text x="1020" y="865" text-anchor="middle" class="text">Permitido</text>
+  <text x="1020" y="892" text-anchor="middle" class="small">Genera brief en spec-kit/input/brief.md</text>
+  <text x="1020" y="914" text-anchor="middle" class="small">Siguiente: generate_spec_kit</text>
+
+  <path class="line" d="M700 210 L700 240" />
+  <path class="line" d="M590 360 L365 500" />
+  <path class="line" d="M810 360 L1035 500" />
+  <path class="line" d="M365 620 L620 680" />
+  <path class="line" d="M1035 620 L780 680" />
+  <path class="line" d="M700 770 L420 825" />
+  <path class="line" d="M700 770 L980 825" />
+
+  <text x="515" y="458" class="label">NO</text>
+  <text x="860" y="458" class="label">YES</text>
+
+  <rect x="28" y="928" width="1344" height="36" fill="#dde6ff" stroke="#a9bde9" stroke-width="1" rx="8" ry="8" />
+  <text x="700" y="952" text-anchor="middle" class="small">Nota: refdocs/ = insumos usuario. spec-kit/input/ = salida generada (brief/spec). source-code/ solo obligatorio cuando reverse engineering = yes.</text>
+</svg>

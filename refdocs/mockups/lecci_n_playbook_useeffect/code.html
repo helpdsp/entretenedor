@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FastTrack AI - React Hooks: useEffect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#963776",
+                        "primary-container": "#9396ff",
+                        "primary-fixed": "#9396ff",
+                        "on-primary-container": "#0a0081",
+                        "secondary-dim": "#523da6",
+                        "tertiary-fixed": "#ff8ed2",
+                        "surface-container-high": "#e6deff",
+                        "secondary": "#5e4ab3",
+                        "surface-tint": "#4647d3",
+                        "on-secondary-fixed-variant": "#533ea7",
+                        "surface-variant": "#e1d8ff",
+                        "secondary-fixed-dim": "#c8bbff",
+                        "on-primary": "#f4f1ff",
+                        "surface-container-low": "#f4eeff",
+                        "surface-bright": "#faf4ff",
+                        "on-surface": "#302950",
+                        "on-primary-fixed": "#000000",
+                        "inverse-on-surface": "#a097c5",
+                        "inverse-primary": "#8083ff",
+                        "on-secondary-fixed": "#361c89",
+                        "on-tertiary-fixed-variant": "#6e1354",
+                        "on-surface-variant": "#5e5680",
+                        "primary": "#4647d3",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#63054a",
+                        "surface-dim": "#d8ceff",
+                        "surface": "#faf4ff",
+                        "tertiary-fixed-dim": "#ef81c4",
+                        "secondary-fixed": "#d6cbff",
+                        "outline": "#79719d",
+                        "on-secondary-container": "#4a349d",
+                        "on-secondary": "#f6f0ff",
+                        "surface-container": "#ece4ff",
+                        "outline-variant": "#b0a7d6",
+                        "tertiary-dim": "#882a69",
+                        "secondary-container": "#d6cbff",
+                        "primary-fixed-dim": "#8387ff",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "error-container": "#f74b6d",
+                        "on-background": "#302950",
+                        "on-tertiary": "#ffeef4",
+                        "on-error": "#ffefef",
+                        "inverse-surface": "#0f072e",
+                        "on-tertiary-fixed": "#3b002b",
+                        "surface-container-highest": "#e1d8ff",
+                        "error": "#b41340",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#faf4ff",
+                        "on-error-container": "#510017",
+                        "tertiary-container": "#ff8ed2",
+                        "primary-dim": "#3939c7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#faf4ff]/80 backdrop-blur-xl shadow-sm flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-4">
+<button class="text-[#6366f1] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#302950]">React Hooks: useEffect</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#6366f1]" data-icon="share">share</span>
+</div>
+</header>
+<main class="pt-16 pb-32">
+<!-- Video Player Section -->
+<section class="w-full aspect-video bg-inverse-surface relative overflow-hidden shadow-2xl">
+<img alt="React code visualization" class="w-full h-full object-cover opacity-60" data-alt="Cinematic close-up of vibrant neon React logo code on a high-tech dark glass screen with purple and cyan light reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG-ytVaqaO7X2p2xoU0e6p5Y8Yud29KlCUpwddRzmsdrlSu1IvE7-sMQqTc6_pAaCFW7Wa-FUzCZWJOHhhyw5Lo9abrqqGgCVy2nYuY6mlOthftSKVil6_fK83BUmvaTEepy4-DIGVC7fQyyL7x4t_x56eX0w_wK_p9eRnADjl7ZwW40Mfqx4kWDgDMSDm68mznTZTIJbf1dFPVRw6ibahjkF8zM3jWhFW5i2hn4s47cAQLTNSExEPQuYyZ3QlAPf6yaariIkaUQ"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center text-on-primary shadow-lg backdrop-blur-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Video Controls Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+<div class="h-1.5 w-full bg-white/20 rounded-full mb-3 overflow-hidden">
+<div class="h-full w-1/3 bg-primary shadow-[0_0_8px_rgba(70,71,211,0.6)]"></div>
+</div>
+<div class="flex justify-between items-center text-white text-xs font-mono">
+<span>02:45 / 08:20</span>
+<span class="material-symbols-outlined text-sm" data-icon="fullscreen">fullscreen</span>
+</div>
+</div>
+</section>
+<!-- Lesson Content -->
+<article class="max-w-3xl mx-auto px-6 mt-8">
+<header class="mb-8">
+<div class="flex items-center gap-3 mb-3">
+<span class="px-3 py-1 bg-surface-container-highest text-secondary text-xs font-bold rounded-full">REACT FOUNDATIONS</span>
+<div class="flex items-center gap-1 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span>5 min read</span>
+</div>
+</div>
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight mb-4">Sintaxis básica</h2>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                    El hook <code class="bg-surface-container px-1.5 py-0.5 rounded font-mono text-primary font-semibold">useEffect</code> permite ejecutar efectos secundarios en componentes funcionales. Es la herramienta principal de React para manejar operaciones que ocurren fuera del flujo de renderizado normal.
+                </p>
+</header>
+<!-- Layered Theory Block -->
+<div class="bg-surface-container-low rounded-xl p-6 mb-8">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+                    ¿Cómo funciona?
+                </h3>
+<p class="text-on-surface-variant leading-relaxed">
+                    Piensa en <code class="font-mono">useEffect</code> como un observador. React ejecutará tu función de efecto después de que el renderizado se haya aplicado a la pantalla. Esto asegura que no bloquees la interactividad del usuario con tareas pesadas o asíncronas.
+                </p>
+</div>
+<!-- Dark Code Block -->
+<div class="bg-inverse-surface rounded-xl overflow-hidden mb-8 shadow-xl">
+<div class="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/10">
+<span class="text-xs font-mono text-inverse-on-surface">BasicEffect.js</span>
+<span class="material-symbols-outlined text-xs text-inverse-on-surface" data-icon="content_copy">content_copy</span>
+</div>
+<pre class="p-6 font-mono text-sm leading-relaxed overflow-x-auto"><span class="text-tertiary-fixed">useEffect</span>(() =&gt; {
+  <span class="text-primary-fixed">// 1. El código de tu efecto aquí</span>
+  <span class="text-white">console</span>.<span class="text-tertiary-fixed">log</span>(<span class="text-tertiary-fixed-dim">'Componente montado'</span>);
+
+  <span class="text-primary-fixed">// Opcional: Función de limpieza</span>
+  <span class="text-secondary-fixed">return</span> () =&gt; {
+    <span class="text-white">console</span>.<span class="text-tertiary-fixed">log</span>(<span class="text-tertiary-fixed-dim">'Limpiando efecto'</span>);
+  };
+}, [<span class="text-primary-fixed">dependency</span>]); <span class="text-primary-fixed">// 2. El array de dependencias</span></pre>
+</div>
+<!-- Key Concepts List -->
+<div class="space-y-6 mb-12">
+<div class="flex gap-5">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-container text-on-primary-container font-bold flex items-center justify-center font-headline">1</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Setup (Función de Efecto)</h4>
+<p class="text-on-surface-variant">Es la función que contiene la lógica. Se ejecuta por defecto después del primer renderizado y tras cada actualización, a menos que se especifique lo contrario.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-container text-on-primary-container font-bold flex items-center justify-center font-headline">2</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Dependency Array</h4>
+<p class="text-on-surface-variant">Un arreglo de valores. React solo volverá a ejecutar el efecto si alguno de estos valores cambia entre renderizados. Un array vacío <code class="font-mono">[]</code> significa que solo se ejecuta una vez al montar.</p>
+</div>
+</div>
+</div>
+<!-- Practical Example Card -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-8 shadow-sm group">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary shadow-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-2">Practical Example: API Fetch</h4>
+<p class="text-on-surface-variant mb-4">Aprende a sincronizar el estado de tu aplicación con datos reales del servidor usando fetch dentro de un efecto controlado.</p>
+<button class="text-secondary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                            EXPLORAR EJERCICIO <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</main>
+<!-- Sticky Action Area -->
+<div class="fixed bottom-20 left-0 w-full px-6 py-4 flex justify-center pointer-events-none">
+<button class="pointer-events-auto max-w-md w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 rounded-xl font-bold text-lg shadow-xl hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2">
+            Continuar lección
+            <span class="material-symbols-outlined" data-icon="keyboard_double_arrow_right">keyboard_double_arrow_right</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-2 bg-[#faf4ff]/90 backdrop-blur-xl rounded-t-[1.5rem] shadow-[0_-8px_24px_rgba(48,41,80,0.04)] z-50">
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#4647d3] to-[#9396ff] text-white rounded-xl py-2 px-4 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Playbook</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#302950]/60 hover:text-[#4647d3] py-2 px-4 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Quiz</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#302950]/60 hover:text-[#4647d3] py-2 px-4 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="style">style</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Flashcards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#302950]/60 hover:text-[#4647d3] py-2 px-4 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Tutor</span>
+</a>
+</nav>
+</body></html>

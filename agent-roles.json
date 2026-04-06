@@ -1,0 +1,103 @@
+{
+  "project": "__PROJECT_NAME__",
+  "project_slug": "__PROJECT_SLUG__",
+  "vision_version": "1.0.0",
+  "agent_framework": "agency-agents",
+  "agent_framework_url": "https://github.com/msitarzewski/agency-agents",
+  "roles": {
+    "frontend": {
+      "lead": "engineering-frontend-developer",
+      "support": [
+        "design-ui-designer",
+        "design-ux-architect"
+      ],
+      "qa": [
+        "testing-accessibility-auditor",
+        "testing-performance-benchmarker"
+      ],
+      "branch_pattern": "feat/frontend-*"
+    },
+    "backend": {
+      "lead": "engineering-backend-architect",
+      "support": [
+        "engineering-database-optimizer",
+        "engineering-security-engineer"
+      ],
+      "qa": [
+        "testing-api-tester",
+        "testing-reality-checker"
+      ],
+      "branch_pattern": "feat/backend-*"
+    },
+    "qa": {
+      "lead": "testing-reality-checker",
+      "support": [
+        "testing-evidence-collector",
+        "testing-api-tester",
+        "testing-accessibility-auditor",
+        "testing-performance-benchmarker"
+      ],
+      "branch_pattern": "qa/*"
+    },
+    "deploy": {
+      "lead": "engineering-devops-automator",
+      "support": [
+        "engineering-site-reliability-engineer"
+      ],
+      "branch_pattern": "infra/*"
+    },
+    "pm": {
+      "lead": "project-management-senior-project-manager",
+      "support": [
+        "product-product-manager",
+        "project-management-project-shepherd"
+      ],
+      "tools": [
+        "github",
+        "clickup"
+      ]
+    }
+  },
+  "sprint_mapping": {
+    "sprint-0": {
+      "focus": [
+        "setup tecnico",
+        "riesgos",
+        "arquitectura"
+      ],
+      "active_roles": [
+        "backend",
+        "frontend",
+        "deploy",
+        "pm"
+      ]
+    },
+    "sprint-1": {
+      "focus": [
+        "mvp funcional",
+        "flujo principal",
+        "qa gate"
+      ],
+      "active_roles": [
+        "frontend",
+        "backend",
+        "qa",
+        "pm"
+      ]
+    },
+    "sprint-2": {
+      "focus": [
+        "hardening",
+        "performance",
+        "release"
+      ],
+      "active_roles": [
+        "frontend",
+        "backend",
+        "qa",
+        "deploy",
+        "pm"
+      ]
+    }
+  }
+}

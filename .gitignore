@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+*.log
+.env
+.env.local
+.matrix/
+.local-ai/
+.DS_Store
+Thumbs.db
+
+# Upstream clones (regenerables via update_spec_kit / update_agency_agents)
+spec-kit/upstream/
+agency-agents/upstream/

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "setup": {
+    "reverseEngineering": null,
+    "referencesDir": "refdocs",
+    "sourceDir": "source-code",
+    "initializedAt": null
+  },
+  "status": "awaiting_project_type",
+  "brief": {
+    "generated": false,
+    "approved": false,
+    "path": "spec-kit/input/brief.md",
+    "generatedAt": null,
+    "approvedAt": null
+  },
+  "spec": {
+    "generated": false,
+    "approved": false,
+    "mode": "local",
+    "generatedAt": null,
+    "approvedAt": null,
+    "artifactFiles": []
+  },
+  "sprints": {
+    "generated": false,
+    "approved": false,
+    "mode": "local",
+    "generatedAt": null,
+    "approvedAt": null,
+    "total": 0,
+    "active": null,
+    "completed": []
+  },
+  "lastAction": {
+    "command": null,
+    "at": null,
+    "details": ""
+  },
+  "updatedAt": "2026-04-06T14:27:29.161Z"
+}

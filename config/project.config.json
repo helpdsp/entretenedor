@@ -1,0 +1,21 @@
+{
+  "matrix": {
+    "baseUrl": "",
+    "projectId": "",
+    "workspaceId": "",
+    "connectedAt": null,
+    "reportPath": "/api/vision/local-projects/report",
+    "validateBriefPath": "/api/vision/briefings/validate",
+    "generateSpecPath": "/api/vision/spec-kit/generate",
+    "authorizePath": "/api/vision/local-projects/authorize",
+    "connection": {
+      "status": "disconnected",
+      "authorizationToken": "",
+      "authorizedAt": null,
+      "authorizedBy": "",
+      "deniedAt": null,
+      "deniedReason": "",
+      "lastError": ""
+    }
+  }
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ruta de Aprendizaje | FastTrack AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffefef",
+                        "on-secondary": "#f6f0ff",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#63054a",
+                        "surface-container": "#ece4ff",
+                        "tertiary-fixed-dim": "#ef81c4",
+                        "on-tertiary": "#ffeef4",
+                        "surface-tint": "#4647d3",
+                        "tertiary-fixed": "#ff8ed2",
+                        "secondary-dim": "#523da6",
+                        "tertiary": "#963776",
+                        "primary": "#4647d3",
+                        "on-secondary-container": "#4a349d",
+                        "on-background": "#302950",
+                        "on-primary-fixed": "#000000",
+                        "on-error-container": "#510017",
+                        "on-tertiary-fixed-variant": "#6e1354",
+                        "surface-variant": "#e1d8ff",
+                        "on-surface-variant": "#5e5680",
+                        "secondary-fixed-dim": "#c8bbff",
+                        "primary-fixed-dim": "#8387ff",
+                        "primary-fixed": "#9396ff",
+                        "on-primary-container": "#0a0081",
+                        "surface-container-highest": "#e1d8ff",
+                        "error": "#b41340",
+                        "surface-container-high": "#e6deff",
+                        "primary-container": "#9396ff",
+                        "outline-variant": "#b0a7d6",
+                        "surface-container-low": "#f4eeff",
+                        "surface-bright": "#faf4ff",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "secondary-container": "#d6cbff",
+                        "background": "#faf4ff",
+                        "inverse-surface": "#0f072e",
+                        "tertiary-container": "#ff8ed2",
+                        "on-surface": "#302950",
+                        "secondary": "#5e4ab3",
+                        "on-secondary-fixed-variant": "#533ea7",
+                        "on-secondary-fixed": "#361c89",
+                        "secondary-fixed": "#d6cbff",
+                        "primary-dim": "#3939c7",
+                        "on-tertiary-fixed": "#3b002b",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#8083ff",
+                        "tertiary-dim": "#882a69",
+                        "error-container": "#f74b6d",
+                        "inverse-on-surface": "#a097c5",
+                        "on-primary": "#f4f1ff",
+                        "surface-dim": "#d8ceff",
+                        "surface": "#faf4ff",
+                        "outline": "#79719d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .path-line {
+            background: repeating-linear-gradient(to bottom, #9396ff 0px, #9396ff 8px, transparent 8px, transparent 16px);
+        }
+        .path-line-solid {
+            background-color: #4647d3;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#faf4ff]/80 dark:bg-[#0f072e]/80 backdrop-blur-xl shadow-[0_12px_32px_rgba(48,41,80,0.06)]">
+<div class="flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="text-[#4647d3] dark:text-[#9396ff] hover:bg-[#d6cbff]/20 p-2 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#4647d3] dark:text-[#9396ff]">Ruta: React Fundamentals</h1>
+</div>
+<button class="text-[#4647d3] dark:text-[#9396ff] hover:bg-[#d6cbff]/20 p-2 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto">
+<!-- Progress Header -->
+<section class="mb-12">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="font-['Inter'] text-[11px] font-semibold tracking-wide uppercase text-secondary mb-1">PROGRESO ACTUAL</p>
+<h2 class="text-3xl font-extrabold text-on-surface">45% Completado</h2>
+</div>
+<div class="text-right">
+<span class="text-sm font-medium text-on-surface-variant">4 de 9 lecciones</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[45%] bg-primary shadow-[0_0_8px_rgba(70,71,211,0.3)] rounded-full"></div>
+</div>
+</section>
+<!-- Learning Path Sequence -->
+<div class="relative space-y-12">
+<!-- Completed Lesson 1 -->
+<div class="relative flex items-start gap-6 group">
+<div class="absolute left-6 top-12 bottom-0 w-1 path-line-solid -mb-12 z-0"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-6 rounded-3xl transition-all duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs font-bold text-primary/60 tracking-tighter">ATOM 01</span>
+<span class="text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded-full uppercase">Completado</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface leading-tight">Introducción a React Hooks</h3>
+<p class="mt-2 text-sm text-on-surface-variant line-clamp-2">Entiende por qué los hooks revolucionaron la forma en que escribimos componentes funcionales.</p>
+</div>
+</div>
+<!-- Completed Lesson 2 -->
+<div class="relative flex items-start gap-6 group">
+<div class="absolute left-6 top-12 bottom-0 w-1 path-line-solid -mb-12 z-0"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-6 rounded-3xl transition-all duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs font-bold text-primary/60 tracking-tighter">ATOM 02</span>
+<span class="text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded-full uppercase">Completado</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface leading-tight">Sintaxis básica</h3>
+<p class="mt-2 text-sm text-on-surface-variant line-clamp-2">Reglas de oro de los hooks y cómo declarar estados con useState.</p>
+</div>
+</div>
+<!-- Current Lesson (Active) -->
+<div class="relative flex items-start gap-6 group">
+<div class="absolute left-6 top-12 bottom-0 w-1 path-line -mb-12 z-0"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-primary-container flex items-center justify-center text-white shadow-[0_8px_24px_rgba(70,71,211,0.3)] scale-110">
+<span class="material-symbols-outlined" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest p-6 rounded-3xl shadow-[0_12px_32px_rgba(48,41,80,0.06)] border border-primary/5 transition-all duration-300 ring-2 ring-primary/20">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs font-bold text-primary tracking-tighter">ATOM 03</span>
+<span class="text-[10px] font-bold bg-primary text-white px-2 py-0.5 rounded-full uppercase animate-pulse">En curso</span>
+</div>
+<h3 class="text-xl font-extrabold text-on-surface leading-tight">El Hook useEffect</h3>
+<p class="mt-2 text-sm text-on-surface-variant">Domina el manejo de efectos secundarios y el ciclo de vida en componentes modernos.</p>
+<button class="mt-6 w-full py-3 bg-gradient-to-tr from-primary to-primary-container text-white font-bold rounded-xl shadow-md active:scale-95 transition-all duration-200">
+                        Continuar Aprendiendo
+                    </button>
+</div>
+</div>
+<!-- Locked Lesson 1 -->
+<div class="relative flex items-start gap-6 group opacity-60">
+<div class="absolute left-6 top-12 bottom-0 w-1 path-line -mb-12 z-0"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-outline shadow-sm">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-6 rounded-3xl">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs font-bold text-outline-variant tracking-tighter">ATOM 04</span>
+<span class="text-[10px] font-bold text-outline-variant px-2 py-0.5 rounded-full uppercase">Bloqueado</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface leading-tight">Custom Hooks</h3>
+<p class="mt-2 text-sm text-on-surface-variant line-clamp-2">Aprende a extraer lógica reutilizable para mantener tu código limpio y DRY.</p>
+</div>
+</div>
+<!-- Locked Lesson 2 -->
+<div class="relative flex items-start gap-6 group opacity-40">
+<div class="relative z-10 w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-outline shadow-sm">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-6 rounded-3xl">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono text-xs font-bold text-outline-variant tracking-tighter">ATOM 05</span>
+<span class="text-[10px] font-bold text-outline-variant px-2 py-0.5 rounded-full uppercase">Bloqueado</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface leading-tight">useContext &amp; Patterns</h3>
+<p class="mt-2 text-sm text-on-surface-variant line-clamp-2">Gestión de estado global sin complicaciones utilizando el API de Contexto.</p>
+</div>
+</div>
+</div>
+<!-- Featured Resource Card (Asymmetric Layout Example) -->
+<section class="mt-16">
+<h4 class="font-headline font-bold text-xl mb-6 px-2">Lectura Recomendada</h4>
+<div class="relative bg-inverse-surface text-on-primary rounded-3xl overflow-hidden p-8 flex flex-col md:flex-row gap-8">
+<div class="flex-1 z-10">
+<span class="inline-block px-3 py-1 bg-tertiary rounded-full text-[10px] font-bold uppercase mb-4">Deep Dive</span>
+<h3 class="text-2xl font-bold mb-4">Mastering the Virtual DOM</h3>
+<p class="text-inverse-on-surface text-sm mb-6 leading-relaxed">Una guía visual para entender cómo React optimiza el renderizado bajo el capó. Esencial para el siguiente nivel.</p>
+<button class="flex items-center gap-2 text-primary-fixed font-bold hover:text-white transition-colors">
+                        Leer artículo <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<div class="w-full md:w-48 h-48 rounded-2xl overflow-hidden shadow-2xl rotate-3">
+<img alt="React Development Concept" class="w-full h-full object-cover" data-alt="abstract digital visualization of reactive neural networks and code patterns in vibrant purple and blue neon lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBas_2CdE1798dP91hupBbuw-grKrBS8t88hZRJgZ_qTYZoKuTUQn5AnGyamSHyLDPPGShrIUkAKGdV4j5Ciu8bIftTHw3lfXrLRIm_CKyvTUPJTluKW82hX0pJqDZgpIxuoIO7kFud12Y1lk7dcSA5TUESal1kdXPyn0q6AGFcexg9rJZpr8OQ8Syn1JzgNnfSHfCd1dMGKI3Z4LO3178YqvkTQ6MyxDRh-6OXXU438QC-ncM-Hr4IpYyf4vXhjbue9bY7v_QhYQ"/>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-3xl bg-[#faf4ff]/80 dark:bg-[#0f072e]/80 backdrop-blur-xl shadow-[0_-8px_24px_rgba(48,41,80,0.04)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full">
+<!-- Path Tab (Active) -->
+<a class="flex flex-col items-center justify-center bg-gradient-to-tr from-[#4647d3] to-[#9396ff] text-white rounded-2xl px-5 py-2 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="route">route</span>
+<span class="font-['Inter'] text-[11px] font-semibold tracking-wide uppercase mt-1">Path</span>
+</a>
+<!-- Library Tab -->
+<a class="flex flex-col items-center justify-center text-[#302950] dark:text-[#b0a7d6] px-5 py-2 hover:text-[#4647d3] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-['Inter'] text-[11px] font-semibold tracking-wide uppercase mt-1">Library</span>
+</a>
+<!-- Playbook Tab -->
+<a class="flex flex-col items-center justify-center text-[#302950] dark:text-[#b0a7d6] px-5 py-2 hover:text-[#4647d3] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-['Inter'] text-[11px] font-semibold tracking-wide uppercase mt-1">Playbook</span>
+</a>
+<!-- Profile Tab -->
+<a class="flex flex-col items-center justify-center text-[#302950] dark:text-[#b0a7d6] px-5 py-2 hover:text-[#4647d3] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold tracking-wide uppercase mt-1">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

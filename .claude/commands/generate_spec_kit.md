@@ -1,0 +1,1 @@
+../../.agents/workflows/generate_spec_kit.md

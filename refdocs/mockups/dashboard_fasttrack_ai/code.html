@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FastTrack AI - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#4647d3",
+                        "surface-container": "#ece4ff",
+                        "tertiary-dim": "#882a69",
+                        "tertiary-fixed": "#ff8ed2",
+                        "on-error-container": "#510017",
+                        "on-error": "#ffefef",
+                        "background": "#faf4ff",
+                        "primary": "#4647d3",
+                        "outline-variant": "#b0a7d6",
+                        "primary-fixed-dim": "#8387ff",
+                        "on-primary-container": "#0a0081",
+                        "on-secondary-fixed": "#361c89",
+                        "inverse-on-surface": "#a097c5",
+                        "on-surface-variant": "#5e5680",
+                        "on-secondary-fixed-variant": "#533ea7",
+                        "surface-bright": "#faf4ff",
+                        "secondary-fixed-dim": "#c8bbff",
+                        "on-tertiary-fixed": "#3b002b",
+                        "error-container": "#f74b6d",
+                        "surface-container-highest": "#e1d8ff",
+                        "secondary-fixed": "#d6cbff",
+                        "error": "#b41340",
+                        "on-secondary": "#f6f0ff",
+                        "surface-container-high": "#e6deff",
+                        "tertiary-fixed-dim": "#ef81c4",
+                        "on-secondary-container": "#4a349d",
+                        "secondary-dim": "#523da6",
+                        "on-primary-fixed": "#000000",
+                        "surface": "#faf4ff",
+                        "surface-variant": "#e1d8ff",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "on-tertiary-fixed-variant": "#6e1354",
+                        "tertiary-container": "#ff8ed2",
+                        "surface-container-low": "#f4eeff",
+                        "tertiary": "#963776",
+                        "on-surface": "#302950",
+                        "on-tertiary-container": "#63054a",
+                        "outline": "#79719d",
+                        "error-dim": "#a70138",
+                        "primary-container": "#9396ff",
+                        "primary-fixed": "#9396ff",
+                        "inverse-primary": "#8083ff",
+                        "on-primary": "#f4f1ff",
+                        "on-background": "#302950",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#d6cbff",
+                        "secondary": "#5e4ab3",
+                        "on-tertiary": "#ffeef4",
+                        "inverse-surface": "#0f072e",
+                        "primary-dim": "#3939c7",
+                        "surface-dim": "#d8ceff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#faf4ff]/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full shadow-[0_12px_32px_rgba(48,41,80,0.06)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container ring-2 ring-primary/10">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="Portrait of a smiling professional woman with dark hair, soft lighting, minimalist studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUkBB8b8i26nsBIc-gEe8cQQEM_UftFzJ6lA3UMPemlEjvrff5ruU7C2KPH1JACEjP3o4czCSvSzpI6p6X5xRjsjNq03Nh-eHUifjbawwzb_vUDVcnrauKVlIC7p9QmxKSieSYoAXeoY37fFNDzJkcm6iAztepoLvCheR_N882SHFKkUjBa7CRB2_ky4ZoGjyuNgOonbrt8hdW0sZXxiJ_FgRdioNK5HbN3uZAACAh4PLz6pDNLgAecVYP3ERN-SpmraZxij3XwA"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Welcome back</span>
+<span class="font-headline font-extrabold text-lg tracking-tight bg-gradient-to-br from-[#4647d3] to-[#9396ff] bg-clip-text text-transparent">Hi, Maria!</span>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-low text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-6">
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-3 gap-3 mb-10">
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="molecule">matter</span>
+</div>
+<span class="text-xl font-headline font-bold text-on-surface">24</span>
+<span class="text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Atoms</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary" data-icon="path">conversion_path</span>
+</div>
+<span class="text-xl font-headline font-bold text-on-surface">3</span>
+<span class="text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Routes</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-sm">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="fire" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="text-xl font-headline font-bold text-on-surface">12</span>
+<span class="text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Days</span>
+</div>
+</section>
+<!-- Continue Learning - Large Editorial Card -->
+<section class="mb-10">
+<div class="relative overflow-hidden bg-inverse-surface rounded-xl p-6 text-on-primary">
+<div class="relative z-10">
+<span class="inline-block px-3 py-1 rounded-full bg-primary text-[10px] font-bold uppercase tracking-widest mb-4">Current Module</span>
+<h2 class="font-headline font-bold text-2xl mb-2 leading-tight">Mastering React Hooks</h2>
+<p class="text-on-surface-variant text-sm mb-8 opacity-80">Advanced State Management</p>
+<div class="space-y-2 mb-8">
+<div class="flex justify-between items-end">
+<span class="text-xs font-semibold">45% Complete</span>
+<span class="text-[10px] opacity-60">12 / 24 Atoms</span>
+</div>
+<div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%] shadow-[0_0_8px_#4647d34d]"></div>
+</div>
+</div>
+<button class="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span>Continue Learning</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Abstract Decorative Gradient -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 blur-[80px] rounded-full"></div>
+</div>
+</section>
+<!-- My Routes List -->
+<section class="mb-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline font-bold text-xl text-on-surface">My Learning Paths</h3>
+<button class="text-primary text-sm font-bold">View All</button>
+</div>
+<div class="space-y-4">
+<!-- Path Item 1 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="react">javascript</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-bold text-sm text-on-surface">React Fundamentals</span>
+<span class="text-xs font-bold text-primary">80%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[80%]"></div>
+</div>
+</div>
+</div>
+<!-- Path Item 2 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary shadow-sm">
+<span class="material-symbols-outlined" data-icon="css">css</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-bold text-sm text-on-surface">Modern CSS</span>
+<span class="text-xs font-bold text-secondary">15%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[15%]"></div>
+</div>
+</div>
+</div>
+<!-- Path Item 3 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-tertiary shadow-sm">
+<span class="material-symbols-outlined" data-icon="ai">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-bold text-sm text-on-surface">AI for Devs</span>
+<span class="text-xs font-bold text-tertiary">0%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[2%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-8 pt-3 bg-[#faf4ff]/90 backdrop-blur-xl z-50 rounded-t-[1.5rem] shadow-[0_-4px_20px_rgba(48,41,80,0.04)]">
+<a class="flex flex-col items-center justify-center bg-[#d6cbff] text-[#4a349d] rounded-2xl px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label text-[10px] font-bold tracking-wide uppercase">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#302950]/60 hover:bg-[#f4eeff] rounded-2xl p-2 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="search">search</span>
+<span class="font-label text-[10px] font-bold tracking-wide uppercase">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#302950]/60 hover:bg-[#f4eeff] rounded-2xl p-2 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="local_library">local_library</span>
+<span class="font-label text-[10px] font-bold tracking-wide uppercase">My Learning</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#302950]/60 hover:bg-[#f4eeff] rounded-2xl p-2 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="person">person</span>
+<span class="font-label text-[10px] font-bold tracking-wide uppercase">Profile</span>
+</a>
+</nav>
+</body></html>
