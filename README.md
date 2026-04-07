@@ -20,18 +20,13 @@ cd mi-proyecto
 npm install
 ```
 
-### 2. Configurar tu IDE (opcional)
+### 2. Configurar tu IDE
 
 Genera los archivos de configuración para tu IDE específico:
 
 ```bash
-# Generar configuración para TODOS los IDEs (cursor, claude, opencode, copilot, antigravity)
+# Generar configuración para todos los IDEs (cursor, claude, opencode, copilot, antigravity)
 npm run setup:ide
-
-# O generar para IDEs específicos usando el script directamente
-node scripts/generate-skills.js --ide cursor
-node scripts/generate-skills.js --ide claude
-node scripts/generate-skills.js --ide cursor claude copilot
 ```
 
 | IDE                | Archivos generados                     |
