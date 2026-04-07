@@ -1,17 +1,22 @@
-﻿const fs = require("fs");
-const path = require("path");
-const { readWorkflowState } = require("./workflow-state");
+﻿const fs = require('fs');
+const path = require('path');
+const { readWorkflowState } = require('./workflow-state');
+const { isClarificationsComplete } = require('./clarification-store');
 
 const REF_DOC_PATTERN = /\.(md|txt|json|ya?ml)$/i;
-const SOURCE_CODE_PATTERN = /\.(ts|tsx|js|jsx|mjs|cjs|py|java|cs|go|rs|rb|php|cpp|c|h|hpp|swift|kt|kts|scala|w)$/i;
-const REF_DOC_EXCLUDED_FILES = new Set(["brief.md", "brief-validation.json"]);
+const SOURCE_CODE_PATTERN =
+  /\.(ts|tsx|js|jsx|mjs|cjs|py|java|cs|go|rs|rb|php|cpp|c|h|hpp|swift|kt|kts|scala|w)$/i;
+const REF_DOC_EXCLUDED_FILES = new Set(['brief.md', 'brief-validation.json']);
 
 function toPosixPath(value) {
-  return String(value || "").replace(/\\/g, "/");
+  return String(value || '').replace(/\\/g, '/');
 }
 
 function resolveInputDir(root, inputValue, fallbackRelative) {
-  const value = typeof inputValue === "string" && inputValue.trim().length > 0 ? inputValue.trim() : fallbackRelative;
+  const value =
+    typeof inputValue === 'string' && inputValue.trim().length > 0
+      ? inputValue.trim()
+      : fallbackRelative;
   if (path.isAbsolute(value)) {
     return value;
   }
@@ -23,7 +28,8 @@ function collectFiles(dirPath, pattern, options = {}) {
     return [];
   }
 
-  const limit = Number.isInteger(options.limit) && options.limit > 0 ? options.limit : 200;
+  const limit =
+    Number.isInteger(options.limit) && options.limit > 0 ? options.limit : 200;
   const excludedBasenames = options.excludedBasenames || new Set();
   const output = [];
   const stack = [dirPath];
@@ -74,45 +80,67 @@ function normalizeReverseEngineering(value) {
 
 function getBriefPreconditions(root, options = {}) {
   const workflow = readWorkflowState(root);
-  const reverseEngineering = normalizeReverseEngineering(workflow.setup?.reverseEngineering);
+  const reverseEngineering = normalizeReverseEngineering(
+    workflow.setup?.reverseEngineering,
+  );
 
-  const referencesDir = resolveInputDir(root, options.referencesDir || workflow.setup?.referencesDir, "refdocs");
-  const sourceDir = resolveInputDir(root, options.sourceDir || workflow.setup?.sourceDir, "source-code");
+  const referencesDir = resolveInputDir(
+    root,
+    options.referencesDir || workflow.setup?.referencesDir,
+    'refdocs',
+  );
+  const sourceDir = resolveInputDir(
+    root,
+    options.sourceDir || workflow.setup?.sourceDir,
+    'source-code',
+  );
 
   const references = collectFiles(referencesDir, REF_DOC_PATTERN, {
     excludedBasenames: REF_DOC_EXCLUDED_FILES,
-    limit: 200
+    limit: 200,
   });
-  const sourceFiles = collectFiles(sourceDir, SOURCE_CODE_PATTERN, { limit: 400 });
+  const sourceFiles = collectFiles(sourceDir, SOURCE_CODE_PATTERN, {
+    limit: 400,
+  });
 
   const sourceRequired =
     options.forceSourceCode === true ||
-    String(options.requireSourceCode || "false").toLowerCase() === "true" ||
+    String(options.requireSourceCode || 'false').toLowerCase() === 'true' ||
     reverseEngineering === true;
 
   const blockers = [];
 
   if (reverseEngineering === null) {
     blockers.push({
-      code: "reverse_engineering_not_defined",
-      message: "Project type is not defined.",
-      action: "Run `init --reverse-engineering yes` or `init --reverse-engineering no`."
+      code: 'reverse_engineering_not_defined',
+      message: 'Project type is not defined.',
+      action:
+        'Run `init --reverse-engineering yes` or `init --reverse-engineering no`.',
+    });
+  }
+
+  if (!isClarificationsComplete(root, 'brief')) {
+    blockers.push({
+      code: 'missing_clarifications',
+      message: 'Brief clarifications are incomplete or missing.',
+      action: 'Run `clarify_brief` to answer the clarification questions.',
     });
   }
 
   if (references.length < 1) {
     blockers.push({
-      code: "missing_refdocs",
+      code: 'missing_refdocs',
       message: `No reference documents found in ${toPosixPath(path.relative(root, referencesDir) || referencesDir)}.`,
-      action: "Add at least 1 refdoc file (.md/.txt/.json/.yaml) and retry `generate_brief`."
+      action:
+        'Add at least 1 refdoc file (.md/.txt/.json/.yaml) and retry `generate_brief`.',
     });
   }
 
   if (sourceRequired && sourceFiles.length < 1) {
     blockers.push({
-      code: "missing_source_code",
+      code: 'missing_source_code',
       message: `Reverse engineering mode requires source files in ${toPosixPath(path.relative(root, sourceDir) || sourceDir)}.`,
-      action: "Add at least 1 source code file and retry `generate_brief`."
+      action: 'Add at least 1 source code file and retry `generate_brief`.',
     });
   }
 
@@ -128,23 +156,23 @@ function getBriefPreconditions(root, options = {}) {
     sourceCount: sourceFiles.length,
     sourceRequired,
     blockers,
-    question: "Este proyecto sera de ingenieria inversa?"
+    question: 'Este proyecto sera de ingenieria inversa?',
   };
 }
 
 function buildGenerateBriefBlockingError(preconditions) {
-  const lines = ["generate_brief blocked."];
+  const lines = ['generate_brief blocked.'];
 
   preconditions.blockers.forEach((blocker) => {
     lines.push(`- ${blocker.message}`);
     lines.push(`  Action: ${blocker.action}`);
   });
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 module.exports = {
   getBriefPreconditions,
   buildGenerateBriefBlockingError,
-  normalizeReverseEngineering
+  normalizeReverseEngineering,
 };

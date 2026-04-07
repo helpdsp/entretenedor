@@ -1,8 +1,74 @@
-const fs = require("fs");
-const path = require("path");
-const { ensureDir } = require("./io");
+const fs = require('fs');
+const path = require('path');
+const { ensureDir } = require('./io');
 
-const CLARIFICATIONS_REL = path.join("planning", "clarifications");
+const CLARIFICATIONS_REL = path.join('planning', 'clarifications');
+
+/**
+ * Default questions for brief clarification stage.
+ * These are used as fallbacks when AI-generated questions are not available.
+ */
+const BRIEF_QUESTIONS = [
+  {
+    id: 'brief_tone',
+    prompt: '¿Qué tono debe tener el brief?',
+    options: ['Ejecutivo', 'Técnico', 'Mixto'],
+  },
+  {
+    id: 'brief_audience',
+    prompt: '¿Quién es la audiencia principal del brief?',
+    options: ['CEO / Stakeholders', 'Equipo técnico', 'Clientes externos'],
+  },
+  {
+    id: 'brief_scope',
+    prompt: '¿Cuál es el alcance del proyecto?',
+    options: ['MVP + roadmap', 'Feature completo', 'Iteración rápida'],
+  },
+  {
+    id: 'brief_priority',
+    prompt: '¿Qué prioridad tiene el proyecto?',
+    options: [
+      'Velocidad de entrega',
+      'Calidad / escalabilidad',
+      'Balance entre ambos',
+    ],
+  },
+];
+
+/**
+ * Default questions for sprints clarification stage.
+ * These are used as fallbacks when AI-generated questions are not available.
+ */
+const SPRINTS_QUESTIONS = [
+  {
+    id: 'sprint_duration',
+    prompt: '¿Cuánto dura cada sprint?',
+    options: ['1 semana', '2 semanas', '3 semanas'],
+  },
+  {
+    id: 'sprint_count',
+    prompt: '¿Cuántos sprints se planifican inicialmente?',
+    options: ['2-3 sprints', '4-6 sprints', '7+ sprints'],
+  },
+  {
+    id: 'team_roles',
+    prompt: '¿Qué roles están activos en el equipo?',
+    options: [
+      'Frontend + Backend',
+      'Full-stack + QA',
+      'Multi-disciplinario completo',
+    ],
+  },
+  {
+    id: 'success_criteria',
+    prompt: '¿Cuál es el criterio principal de éxito por sprint?',
+    options: [
+      'Funcionalidad entregada',
+      'Cobertura de tests',
+      'Aprobación del stakeholder',
+    ],
+  },
+];
 
 /**
  * Valid clarification stages:
@@ -22,7 +88,7 @@ function readClarifications(root, stage) {
     return null;
   }
   try {
-    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
   } catch (_error) {
     return null;
   }
@@ -33,22 +99,41 @@ function writeClarifications(root, stage, answers, meta) {
   ensureDir(path.dirname(filePath));
   const record = Object.assign(
     { stage, answers, completedAt: new Date().toISOString() },
-    meta || {}
+    meta || {},
   );
-  fs.writeFileSync(filePath, `${JSON.stringify(record, null, 2)}\n`, "utf8");
+  fs.writeFileSync(filePath, `${JSON.stringify(record, null, 2)}\n`, 'utf8');
 }
 
 /**
- * Completeness check: file exists and has at least one non-empty answer.
- * Questions are AI-generated and vary per project, so we don't validate specific IDs.
+ * Completeness check: file exists and all required questions have non-empty answers.
+ * For known stages (brief, sprints), validates against predefined question sets.
+ * For other stages, checks that at least one non-empty answer exists.
  */
 function isClarificationsComplete(root, stage) {
   const data = readClarifications(root, stage);
-  if (!data || typeof data.answers !== "object" || data.answers === null) {
+  if (!data || typeof data.answers !== 'object' || data.answers === null) {
     return false;
   }
+
+  // Define expected questions for known stages
+  const stageQuestions = {
+    brief: BRIEF_QUESTIONS,
+    sprints: SPRINTS_QUESTIONS,
+  };
+
+  const expectedQuestions = stageQuestions[stage];
+  if (expectedQuestions) {
+    // For known stages, ALL questions must have non-empty answers
+    return expectedQuestions.every(
+      (q) =>
+        typeof data.answers[q.id] === 'string' &&
+        data.answers[q.id].trim().length > 0,
+    );
+  }
+
+  // For other stages, at least one non-empty answer is sufficient
   return Object.values(data.answers).some(
-    (v) => typeof v === "string" && v.trim().length > 0
+    (v) => typeof v === 'string' && v.trim().length > 0,
   );
 }
 
@@ -60,9 +145,12 @@ function isClarificationsComplete(root, stage) {
  *   { valid: false, reason: string }         - invalid input, caller should retry
  */
 function parseAnswer(raw, options) {
-  const trimmed = String(raw == null ? "" : raw).trim();
+  const trimmed = String(raw == null ? '' : raw).trim();
   if (trimmed.length === 0) {
-    return { valid: false, reason: "Entrada vacia. Escribe un numero o respuesta directa." };
+    return {
+      valid: false,
+      reason: 'Entrada vacia. Escribe un numero o respuesta directa.',
+    };
   }
   if (/^\d+$/.test(trimmed)) {
     const num = parseInt(trimmed, 10);
@@ -72,15 +160,20 @@ function parseAnswer(raw, options) {
     if (num >= 1 && num <= options.length) {
       return { valid: true, value: options[num - 1] };
     }
-    return { valid: false, reason: `Numero invalido. Escribe entre 0 y ${options.length}.` };
+    return {
+      valid: false,
+      reason: `Numero invalido. Escribe entre 0 y ${options.length}.`,
+    };
   }
   return { valid: true, value: trimmed };
 }
 
 module.exports = {
+  BRIEF_QUESTIONS,
+  SPRINTS_QUESTIONS,
   getClarificationsPath,
   readClarifications,
   writeClarifications,
   isClarificationsComplete,
-  parseAnswer
+  parseAnswer,
 };

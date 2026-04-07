@@ -14,7 +14,11 @@ const {
   markSprintsApproved,
 } = require('./lib/workflow-state');
 const { printMatrixOutcome } = require('./lib/matrix-reporting');
-const { readClarifications } = require('./lib/clarification-store');
+const {
+  readClarifications,
+  isClarificationsComplete,
+  SPRINTS_QUESTIONS,
+} = require('./lib/clarification-store');
 
 function sprintId(number) {
   return `sprint-${String(number).padStart(2, '0')}`;
@@ -329,6 +333,17 @@ async function main() {
   const root = process.cwd();
   loadEnv(root);
   const args = parseArgs(process.argv.slice(2));
+
+  // Validate sprints clarifications are complete
+  if (!isClarificationsComplete(root, 'sprints')) {
+    const requiredIds = SPRINTS_QUESTIONS.map((q) => q.id).join(', ');
+    console.error('generate_sprints blocked.');
+    console.error(`Brief clarifications are incomplete or missing.`);
+    console.error(
+      `  Action: Run \`clarify_sprints\` and provide answers for: ${requiredIds}`,
+    );
+    process.exit(1);
+  }
 
   const mode = String(args.mode || 'local').toLowerCase();
   const specDir = resolvePathFromRoot(root, args['spec-dir'], 'spec-kit/input');

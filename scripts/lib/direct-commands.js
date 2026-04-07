@@ -1,83 +1,91 @@
-const path = require("path");
-const { spawnSync } = require("child_process");
+const path = require('path');
+const { spawnSync } = require('child_process');
 
 const DIRECT_COMMANDS = Object.freeze({
   init: {
-    script: "scripts/init-project.js",
-    defaultArgs: []
+    script: 'scripts/init-project.js',
+    defaultArgs: [],
   },
   generate_brief: {
-    script: "scripts/generate-brief.js",
-    defaultArgs: []
+    script: 'scripts/generate-brief.js',
+    defaultArgs: [],
   },
   generate_spec_kit: {
-    script: "scripts/generate-spec-kit.js",
-    defaultArgs: ["--mode", "matrix", "--brief", "spec-kit/input/brief.md"]
+    script: 'scripts/generate-spec-kit.js',
+    defaultArgs: ['--mode', 'matrix', '--brief', 'spec-kit/input/brief.md'],
   },
   generate_sprints: {
-    script: "scripts/plan-all-sprints.js",
-    defaultArgs: ["--mode", "local"]
+    script: 'scripts/plan-all-sprints.js',
+    defaultArgs: ['--mode', 'local'],
   },
   approve_sprints_plan: {
-    script: "scripts/approve-sprints-plan.js",
-    defaultArgs: []
+    script: 'scripts/approve-sprints-plan.js',
+    defaultArgs: [],
   },
   start_sprint: {
-    script: "scripts/start-sprint.js",
-    defaultArgs: []
+    script: 'scripts/start-sprint.js',
+    defaultArgs: [],
   },
   continue_sprint: {
-    script: "scripts/continue-sprint.js",
-    defaultArgs: []
+    script: 'scripts/continue-sprint.js',
+    defaultArgs: [],
   },
   reset_project: {
-    script: "scripts/reset-project.js",
-    defaultArgs: []
+    script: 'scripts/reset-project.js',
+    defaultArgs: [],
   },
   clarify_brief: {
-    script: "scripts/clarify-brief.js",
-    defaultArgs: []
+    script: 'scripts/clarify-brief.js',
+    defaultArgs: [],
   },
   clarify_spec_kit: {
-    script: "scripts/clarify-spec-kit.js",
-    defaultArgs: []
+    script: 'scripts/clarify-spec-kit.js',
+    defaultArgs: [],
   },
   clarify_sprints: {
-    script: "scripts/clarify-sprints.js",
-    defaultArgs: []
+    script: 'scripts/clarify-sprints.js',
+    defaultArgs: [],
   },
   clarify_sprint: {
-    script: "scripts/clarify-sprint.js",
-    defaultArgs: []
+    script: 'scripts/clarify-sprint.js',
+    defaultArgs: [],
   },
   update_spec_kit: {
-    script: "scripts/update-spec-kit.js",
-    defaultArgs: []
+    script: 'scripts/update-spec-kit.js',
+    defaultArgs: [],
   },
   update_agency_agents: {
-    script: "scripts/update-agency-agents.js",
-    defaultArgs: []
+    script: 'scripts/update-agency-agents.js',
+    defaultArgs: [],
   },
   generate_skills: {
-    script: "scripts/generate-skills.js",
-    defaultArgs: []
+    script: 'scripts/generate-skills.js',
+    defaultArgs: [],
   },
-  "planning:finalize": {
-    script: "scripts/finalize-planning.js",
-    defaultArgs: []
+  add_ide: {
+    script: 'scripts/add-ide.js',
+    defaultArgs: [],
+  },
+  upgrade: {
+    script: 'scripts/upgrade.js',
+    defaultArgs: [],
+  },
+  'planning:finalize': {
+    script: 'scripts/finalize-planning.js',
+    defaultArgs: [],
   },
   status: {
-    script: "scripts/status-report.js",
-    defaultArgs: []
+    script: 'scripts/status-report.js',
+    defaultArgs: [],
   },
-  "status:web": {
-    script: "scripts/status-web-server.js",
-    defaultArgs: []
-  }
+  'status:web': {
+    script: 'scripts/status-web-server.js',
+    defaultArgs: [],
+  },
 });
 
 function toCommandName(value) {
-  return typeof value === "string" ? value.trim() : "";
+  return typeof value === 'string' ? value.trim() : '';
 }
 
 function isDirectCommand(command) {
@@ -91,8 +99,10 @@ function getDirectCommand(command) {
 }
 
 function formatDirectCommand(command, args = []) {
-  const safeArgs = Array.isArray(args) ? args.filter((value) => typeof value === "string" && value.length > 0) : [];
-  const suffix = safeArgs.length > 0 ? ` ${safeArgs.join(" ")}` : "";
+  const safeArgs = Array.isArray(args)
+    ? args.filter((value) => typeof value === 'string' && value.length > 0)
+    : [];
+  const suffix = safeArgs.length > 0 ? ` ${safeArgs.join(' ')}` : '';
   return `${command}${suffix}`;
 }
 
@@ -107,16 +117,16 @@ function executeDirectCommand(root, command, args = [], options = {}) {
   const extraArgs = Array.isArray(args) ? args : [];
   const result = spawnSync(process.execPath, [scriptPath, ...defaultArgs, ...extraArgs], {
     cwd: root,
-    stdio: options.stdio || "inherit",
-    encoding: "utf8"
+    stdio: options.stdio || 'inherit',
+    encoding: 'utf8',
   });
 
   return {
     status: result.status,
-    stdout: result.stdout || "",
-    stderr: result.stderr || "",
+    stdout: result.stdout || '',
+    stderr: result.stderr || '',
     signal: result.signal || null,
-    command: formatDirectCommand(command, [...defaultArgs, ...extraArgs])
+    command: formatDirectCommand(command, [...defaultArgs, ...extraArgs]),
   };
 }
 
@@ -125,5 +135,5 @@ module.exports = {
   getDirectCommand,
   isDirectCommand,
   formatDirectCommand,
-  executeDirectCommand
+  executeDirectCommand,
 };
