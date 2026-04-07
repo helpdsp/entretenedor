@@ -1,8 +1,32 @@
 {
-  "name": "blank-project-template",
-  "private": true,
+  "name": "@nexus360/vision-framework",
+  "private": false,
   "version": "0.1.0",
-  "description": "Local cloneable template to start projects from a Spec Kit.",
+  "description": "Local-first AI-powered framework for structured software development: brief → spec → sprints → execution",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "bin": {
+    "vision": "./bin/vision-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nexus360-tech/vision.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nexus360-tech/vision/issues"
+  },
+  "homepage": "https://github.com/Nexus360-tech/vision#readme",
+  "keywords": [
+    "ai",
+    "framework",
+    "development",
+    "sprints",
+    "specifications",
+    "project-management",
+    "local-first"
+  ],
   "scripts": {
     "init": "node scripts/init-project.js",
     "bootstrap": "node scripts/bootstrap-project.js",
@@ -40,8 +64,14 @@
     "status:web": "node scripts/status-web-server.js",
     "check:scripts": "node scripts/check-scripts.js",
     "test:local": "node --test tests/status-summary.test.js tests/matrix-client.test.js tests/generate-brief-preconditions.test.js tests/reset-project.test.js tests/clarification.test.js",
+    "test:coverage": "c8 --reporter=text --reporter=lcov npm run test:local",
+    "lint": "eslint scripts/",
+    "format": "prettier --write \"scripts/**/*.js\" \"tests/**/*.js\"",
+    "format:check": "prettier --check \"scripts/**/*.js\" \"tests/**/*.js\"",
     "mcp:matrix": "node mcp/matrix-mcp-server.mjs",
-    "setup:ide": "node scripts/generate-skills.js --ide cursor claude opencode copilot antigravity"
+    "setup:ide": "node scripts/generate-skills.js --ide cursor claude opencode copilot antigravity",
+    "add_ide": "node scripts/add-ide.js",
+    "upgrade": "node scripts/upgrade.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.5",
@@ -67,7 +97,12 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@types/canvas-confetti": "^1.9.0",
-    "@types/dompurify": "^3.0.5"
+    "@types/dompurify": "^3.0.5",
+    "c8": "^11.0.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1"
   }
 }
