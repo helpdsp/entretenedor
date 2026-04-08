@@ -117,7 +117,7 @@ function main() {
 
     const allResults = [];
     for (const ide of opts.ide) {
-      const result = generateIdeFiles(ide, files, COMMANDS_DIR, opts.dryRun);
+      const result = generateIdeFiles(ROOT, ide, files, COMMANDS_DIR, opts.dryRun);
       allResults.push(result);
     }
 
