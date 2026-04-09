@@ -1,6 +1,6 @@
 ---
 name: start_sprint
-description: Inicia el desarrollo del sprint N según el plan (código + artefactos). No es un solo script ni un resumen: el agente debe implementar en la misma sesión salvo bloqueo explícito.
+description: Inicia el desarrollo del sprint N según el plan (código + artefactos). No es un solo script ni un resumen el agente debe implementar en la misma sesión salvo bloqueo explícito.
 preconditions: generate_sprints completado; si N>1 todas las tareas del sprint N-1 en tasks.md con Status `done`; carpeta planning/sprints/sprint-0N/ existe
 args: --sprint N (opcional si se puede inferir N — ver abajo)
 next: seguir implementando; cuando todo esté `done`, `start_sprint --sprint N+1` (cierra el sprint anterior automáticamente)
