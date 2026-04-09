@@ -11,6 +11,7 @@ next: generate_spec_kit
 **No es un paso obligatorio del flujo principal.**
 
 Invócalo cuando:
+
 - El brief aprobado tiene secciones ambiguas o incompletas
 - No está claro el stack tecnológico requerido
 - Hay dudas sobre integraciones externas, autenticación o modelo de datos
@@ -42,5 +43,20 @@ node scripts/clarify-spec-kit.js --answers-file planning/clarifications/spec_kit
 
 ## Resultado
 
-- `planning/clarifications/spec_kit.json` creado con preguntas + respuestas
+- `planning/clarifications/spec_kit.json` creado con preguntas + respuestas + metadata
+
+**Estructura del JSON con metadata:**
+
+```json
+{
+  "generated_by_model": "[IDE_AGENT_MODEL]",
+  "generated_at": "[ISO_TIMESTAMP]",
+  "agent_roles": "[ROL_APLICADO]",
+  "vision_command": "clarify_spec_kit",
+  "source_brief": "spec-kit/input/brief.md",
+  "questions": [...],
+  "answers": {...}
+}
+```
+
 - `generate_spec_kit` usará esas respuestas como contexto adicional

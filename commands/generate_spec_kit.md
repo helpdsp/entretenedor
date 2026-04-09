@@ -48,11 +48,20 @@ Si `planning/clarifications/spec_kit.json` existe, el script lo usa como context
 
 **Fallback del script (`LOCAL_IDE_AI_COMMAND` ausente o error):** el Node sigue generando los 8 artefactos. Si el PRD incluye `### RF-XX — …`, **stories.md** recibe una historia por RF, etc. Para texto más narrativo o decisiones de arquitectura, el **agente del IDE** debe revisar y editar esos archivos (eso cuenta como IA local). Opcionalmente puedes configurar `LOCAL_IDE_AI_COMMAND` para un CLI de JSON.
 
-### Paso 4 — Verificar artefactos
+### Paso 4 — Verificar artefactos y metadata
 
 Confirma que existen en `spec-kit/input/`:
 `PRD.md`, `technical-spec.md`, `api-spec.yaml`, `data-model.md`,
 `epics.md`, `stories.md`, `sprint-plan.md`, `test-plan.md`
+
+**Metadata obligatoria en cada archivo:**
+Cada artefacto debe incluir al inicio un bloque YAML frontmatter con:
+
+- `generated_by_model`: Modelo de IA usado
+- `generated_at`: Timestamp ISO 8601
+- `agent_roles`: Roles de Agency Agents aplicados
+- `vision_command`: "generate_spec_kit"
+- `source_brief`: Ruta al brief usado (ej: "spec-kit/input/brief.md")
 
 ### Paso 5 — Reportar
 

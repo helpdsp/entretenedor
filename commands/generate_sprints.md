@@ -37,6 +37,17 @@ para la planificación.
 Confirma que se crearon carpetas en `planning/sprints/sprint-XX/`.
 Muestra al usuario: número de sprints, goals, total de stories y tareas.
 
+**Metadata obligatoria en cada archivo de sprint:**
+Todos los archivos generados (`sprint-goal.md`, `stories.md`, `tasks.md`, `qa-plan.md`)
+deben incluir al inicio un bloque YAML frontmatter con:
+
+- `generated_by_model`: Modelo de IA usado
+- `generated_at`: Timestamp ISO 8601
+- `agent_roles`: Roles de Agency Agents aplicados
+- `vision_command`: "generate_sprints"
+- `sprint_number`: Número del sprint (ej: 1, 2, 3)
+- `source_spec_kit`: Ruta a los artefactos del spec kit (ej: "spec-kit/input/")
+
 **Formato de tasks.md mejorado:** Las tareas ahora incluyen contexto arquitectónico:
 
 - **RF**: Requisito Funcional del PRD (ej: RF-08)

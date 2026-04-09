@@ -12,6 +12,7 @@ next: start_sprint --sprint N
 **No es un paso obligatorio del flujo principal.**
 
 Invócalo cuando:
+
 - Las tareas del sprint tienen criterios de aceptación ambiguos
 - Los roles asignados a las tareas no están claros o hay conflictos
 - Hay dependencias técnicas entre tareas que no están ordenadas
@@ -43,5 +44,21 @@ node scripts/clarify-sprint.js --sprint 1 --answers-file planning/clarifications
 
 ## Resultado
 
-- `planning/clarifications/sprint-N.json` creado con preguntas + respuestas
+- `planning/clarifications/sprint-N.json` creado con preguntas + respuestas + metadata
+
+**Estructura del JSON con metadata:**
+
+```json
+{
+  "generated_by_model": "[IDE_AGENT_MODEL]",
+  "generated_at": "[ISO_TIMESTAMP]",
+  "agent_roles": "[ROL_APLICADO]",
+  "vision_command": "clarify_sprint",
+  "sprint_number": N,
+  "source_sprint_dir": "planning/sprints/sprint-0N/",
+  "questions": [...],
+  "answers": {...}
+}
+```
+
 - Contexto disponible para el agente durante la ejecución del sprint

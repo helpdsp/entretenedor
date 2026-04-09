@@ -11,6 +11,7 @@ next: generate_brief
 **No es un paso obligatorio del flujo principal.**
 
 Invócalo cuando:
+
 - Los refdocs son ambiguos, incompletos o contradictorios
 - No está claro el objetivo de negocio, la audiencia o el alcance
 - Hay dudas sobre si el proyecto es reverse engineering o nuevo
@@ -47,7 +48,22 @@ node scripts/clarify-brief.js --answers-file planning/clarifications/brief-answe
 
 ## Resultado
 
-- `planning/clarifications/brief.json` creado con preguntas + respuestas
+- `planning/clarifications/brief.json` creado con preguntas + respuestas + metadata
+
+**Estructura del JSON con metadata:**
+
+```json
+{
+  "generated_by_model": "[IDE_AGENT_MODEL]",
+  "generated_at": "[ISO_TIMESTAMP]",
+  "agent_roles": "[ROL_APLICADO]",
+  "vision_command": "clarify_brief",
+  "source_refdocs": "refdocs/",
+  "questions": [...],
+  "answers": {...}
+}
+```
+
 - `generate_brief` usará esas respuestas como contexto adicional para la IA
 
 ## Después del brief

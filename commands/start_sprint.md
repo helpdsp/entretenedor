@@ -30,6 +30,47 @@ Trata como **`start_sprint`** cualquiera de estas intenciones del usuario (norma
    - `spec-kit/input/*` cuando haga falta (technical-spec, PRD, api-spec, data-model).
 4. Entrega **cambios concretos en el repositorio** (archivos tocados, rutas, componentes). Si el backlog es enorme, implementa un **primer corte vertical** (p. ej. rutas + datos mock + un player) y deja listo el siguiente paso; no uses “el sprint es largo” como excusa para no codificar nada.
 
+## Metadata de generación en archivos de código
+
+**Requisito obligatorio:** Todo archivo de código fuente generado o modificado durante el sprint
+debe incluir al inicio un bloque de metadata que identifique el modelo usado:
+
+**Para archivos de código (JavaScript, TypeScript, Python, etc.):**
+
+```
+/**
+ * @generated_by_model [IDE_AGENT_MODEL]
+ * @generated_at [ISO_TIMESTAMP]
+ * @agent_roles [ROL_APLICADO]
+ * @vision_command start_sprint --sprint N
+ * @sprint_number N
+ * @task_id [T-XXX] (si aplica)
+ */
+```
+
+**Para archivos de configuración (JSON, YAML, etc.):**
+
+```yaml
+# @generated_by_model: [IDE_AGENT_MODEL]
+# @generated_at: [ISO_TIMESTAMP]
+# @agent_roles: [ROL_APLICADO]
+# @vision_command: start_sprint --sprint N
+# @sprint_number: N
+```
+
+**Para archivos markdown (docs, ADRs, etc.):**
+
+```yaml
+---
+generated_by_model: "[IDE_AGENT_MODEL]"
+generated_at: "[ISO_TIMESTAMP]"
+agent_roles: "[ROL_APLICADO]"
+vision_command: "start_sprint --sprint N"
+sprint_number: N
+task_id: "T-XXX" (si aplica)
+---
+```
+
 ## Precondiciones (script)
 
 - **Sprint N>1:** todas las tareas en `planning/sprints/sprint-0{N-1}/tasks.md` con **Status** `done`. Si falla, informa qué filas faltan; no inicies desarrollo del sprint N hasta resolverlo.

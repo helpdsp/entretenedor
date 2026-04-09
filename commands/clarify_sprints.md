@@ -11,6 +11,7 @@ next: generate_sprints
 **No es un paso obligatorio del flujo principal.**
 
 Invócalo cuando:
+
 - Las stories o epics del Spec Kit son ambiguas o demasiado amplias
 - No está claro cómo priorizar features entre sprints
 - Hay dependencias técnicas no resueltas entre historias
@@ -42,5 +43,20 @@ node scripts/clarify-sprints.js --answers-file planning/clarifications/sprints-a
 
 ## Resultado
 
-- `planning/clarifications/sprints.json` creado con preguntas + respuestas
+- `planning/clarifications/sprints.json` creado con preguntas + respuestas + metadata
+
+**Estructura del JSON con metadata:**
+
+```json
+{
+  "generated_by_model": "[IDE_AGENT_MODEL]",
+  "generated_at": "[ISO_TIMESTAMP]",
+  "agent_roles": "[ROL_APLICADO]",
+  "vision_command": "clarify_sprints",
+  "source_spec_kit": "spec-kit/input/",
+  "questions": [...],
+  "answers": {...}
+}
+```
+
 - `generate_sprints` usará esas respuestas como contexto de planificación

@@ -16,6 +16,7 @@ El script `node scripts/generate-brief.js` **solo registra el estado** del workf
 ### Paso 1 — Verificar precondiciones y leer el estado del proyecto
 
 Lee `planning/workflow-state.json` para conocer:
+
 - `setup.reverseEngineering` (true/false)
 - `setup.referencesDir` (default: `refdocs`)
 - `setup.sourceDir` (default: `source-code`)
@@ -58,49 +59,76 @@ Si los refdocs son suficientemente claros, continúa al Paso 3.
 ### Paso 4 — Escribir el brief
 
 Crea o sobreescribe `spec-kit/input/brief.md` con un brief ejecutivo de alta calidad basado
-en el contenido leído. El brief debe tener **estas secciones obligatorias**:
+en el contenido leído. El brief debe tener **estas secciones obligatorias** y **metadata del modelo**:
+
+**REQUISITO DE METADATA:**
+Al inicio del archivo, incluye un bloque YAML frontmatter con:
+
+- `generated_by_model`: El modelo de IA usado (ej: "claude-sonnet-4-20250514", "gpt-4o", etc.)
+- `generated_at`: Timestamp ISO 8601 de la generación
+- `agent_roles`: Slugs de roles de Agency Agents aplicados (ej: "product-product-manager + engineering-technical-writer")
+- `vision_command`: El comando que generó el archivo ("generate_brief")
 
 ```markdown
+---
+generated_by_model: '[IDE_AGENT_MODEL]'
+generated_at: '[ISO_TIMESTAMP]'
+agent_roles: '[ROL_APLICADO]'
+vision_command: 'generate_brief'
+---
+
 # Brief — [Nombre del Proyecto]
 
 ## Executive Summary
+
 [2-3 párrafos: qué es el proyecto, para quién, qué problema resuelve, cuál es la propuesta de valor.]
 
 ## Context
+
 [Contexto de negocio: por qué existe este proyecto, situación actual, motivación.]
 
 ## Goals
+
 [Objetivos concretos y medibles del proyecto. Usar bullets.]
 
 ## Target Users / Roles
+
 [Quiénes usan el sistema, qué rol tiene cada uno, qué necesitan.]
 
 ## Scope — In
+
 [Funcionalidades y módulos que SÍ están incluidos en este proyecto.]
 
 ## Scope — Out / Non-goals
+
 [Qué queda explícitamente fuera del alcance inicial.]
 
 ## Functional Requirements Summary
+
 [Resumen de los requisitos funcionales clave, agrupados por épica si aplica.
- Si hay IDs (RF-XX), mencionarlos. Para reverse engineering: describir el comportamiento actual
- inferido del código fuente.]
+Si hay IDs (RF-XX), mencionarlos. Para reverse engineering: describir el comportamiento actual
+inferido del código fuente.]
 
 ## Technical Stack & Constraints
+
 [Stack tecnológico, integraciones, restricciones no funcionales (performance, seguridad, etc.).]
 
 ## Success Criteria
+
 [Cómo se mide el éxito. Criterios de aceptación de alto nivel.]
 
 ## Open Questions / Risks
+
 [Puntos ambiguos, decisiones pendientes, riesgos identificados.]
 
 ## Input Sources
+
 - refdocs: [lista de archivos leídos]
 - source-code: [lista de archivos leídos, si aplica]
 ```
 
 **Reglas de calidad:**
+
 - El brief debe tener suficiente detalle para que `generate_spec_kit` pueda producir los 8 artefactos
   (PRD, technical-spec, api-spec, data-model, epics, stories, sprint-plan, test-plan).
 - No copiar bloques enteros de los refdocs — sintetizar y estructurar.
