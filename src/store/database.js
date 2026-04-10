@@ -55,7 +55,7 @@ export const partnerService = {
 
     const newPartner = {
       ...partnerData,
-      id: crypto.randomUUID(),
+      id: 'ptn-' + Math.random().toString(36).substr(2, 9),
       numero_cliente: db.config.nextPartnerNumber++,
       created_at: new Date().toISOString()
     };
@@ -99,7 +99,7 @@ export const paymentService = {
     const db = getDB();
     const newPayment = {
       ...paymentData,
-      id: crypto.randomUUID(),
+      id: 'pay-' + Math.random().toString(36).substr(2, 9),
       created_at: new Date().toISOString()
     };
     db.payments.push(newPayment);
@@ -121,7 +121,7 @@ export const complaintService = {
     const db = getDB();
     const newComplaint = {
       ...complaintData,
-      id: crypto.randomUUID(),
+      id: 'cmp-' + Math.random().toString(36).substr(2, 9),
       folio: `Q-${db.config.nextFolioNumber++}`,
       estatus: 'ABIERTA',
       created_at: new Date().toISOString()
