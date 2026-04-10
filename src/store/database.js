@@ -159,7 +159,7 @@ export const userService = {
     }
     const newUser = {
       ...userData,
-      id: crypto.randomUUID(),
+      id: 'usr-' + Math.random().toString(36).substr(2, 9),
       created_at: new Date().toISOString()
     };
     db.users.push(newUser);
