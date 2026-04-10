@@ -95,12 +95,13 @@ function App() {
     }
   }
 
-  if (!user) {
-    return <LoginForm onLogin={setUser} />
-  }
+  try {
+    if (!user) {
+      return <LoginForm onLogin={setUser} />
+    }
 
-  return (
-    <div className="flex h-screen overflow-hidden bg-[#0f172a]">
+    return (
+      <div className="flex h-screen overflow-hidden bg-[#0f172a]">
       {/* Sidebar */}
       <aside className="w-72 glass m-4 mr-0 flex flex-col py-8 shadow-2xl">
         <div className="px-8 text-2xl font-bold mb-12 flex items-center gap-3">
@@ -203,7 +204,25 @@ function App() {
         {renderContent()}
       </main>
     </div>
-  )
+    )
+  } catch (error) {
+    return (
+      <div className="min-h-screen bg-slate-900 text-white p-20">
+        <h1 className="text-4xl font-bold mb-4 text-red-500">Error de Sistema</h1>
+        <p className="text-xl text-slate-400 mb-8">La aplicación no pudo iniciarse correctamente.</p>
+        <pre className="bg-black/50 p-8 rounded-xl border border-red-500/20 text-red-400 overflow-auto max-w-full">
+          {error.message}
+          {"\n\nStack:\n" + error.stack}
+        </pre>
+        <button 
+          onClick={() => { localStorage.clear(); window.location.reload(); }}
+          className="mt-10 btn-primary"
+        >
+          Resetear Base de Datos y Reintentar
+        </button>
+      </div>
+    )
+  }
 }
 
 function NavItem({ icon, label, active = false, onClick }) {
