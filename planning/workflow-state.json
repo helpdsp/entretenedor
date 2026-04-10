@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "setup": {
+    "reverseEngineering": false,
+    "referencesDir": "refdocs",
+    "sourceDir": "source-code",
+    "initializedAt": "2026-04-09T22:51:46.218Z"
+  },
+  "status": "sprint_active",
+  "brief": {
+    "generated": true,
+    "approved": true,
+    "path": "spec-kit/input/brief.md",
+    "generatedAt": "2026-04-09T22:55:24.710Z",
+    "approvedAt": "2026-04-09T22:58:16.306Z"
+  },
+  "spec": {
+    "generated": true,
+    "approved": true,
+    "mode": "local",
+    "generatedAt": "2026-04-09T22:58:16.306Z",
+    "approvedAt": "2026-04-09T23:04:50.140Z",
+    "artifactFiles": [
+      "PRD.md",
+      "technical-spec.md",
+      "api-spec.yaml",
+      "data-model.md",
+      "epics.md",
+      "stories.md",
+      "sprint-plan.md",
+      "test-plan.md"
+    ]
+  },
+  "sprints": {
+    "generated": true,
+    "approved": true,
+    "mode": "local",
+    "generatedAt": "2026-04-09T23:04:50.141Z",
+    "approvedAt": "2026-04-09T23:04:50.143Z",
+    "total": 1,
+    "active": 1,
+    "completed": []
+  },
+  "lastAction": {
+    "command": "start_sprint",
+    "at": "2026-04-09T23:06:07.651Z",
+    "details": "Sprint 1 started."
+  },
+  "updatedAt": "2026-04-09T23:06:07.651Z"
+}

@@ -28,6 +28,7 @@
     "local-first"
   ],
   "scripts": {
+    "dev": "vite",
     "init": "node scripts/init-project.js",
     "bootstrap": "node scripts/bootstrap-project.js",
     "connect_project": "node scripts/connect-project.js",
@@ -78,6 +79,7 @@
     "@supabase/supabase-js": "^2.101.1",
     "@tailwindcss/vite": "^4.2.2",
     "@tanstack/react-query": "^5.96.2",
+    "@vitejs/plugin-react": "^6.0.1",
     "@xyflow/react": "^12.10.2",
     "archiver": "^7.0.1",
     "canvas-confetti": "^1.9.4",
@@ -87,6 +89,8 @@
     "framer-motion": "^12.38.0",
     "i18next": "^26.0.3",
     "lucide-react": "^1.7.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-hook-form": "^7.72.1",
     "react-i18next": "^17.0.2",
     "react-markdown": "^10.1.0",

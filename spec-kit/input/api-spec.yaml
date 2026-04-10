@@ -1,0 +1,7 @@
+openapi: 3.1.0
+info:
+  title: Local Project — HTTP / RPC surface
+  version: 1.0.0
+  x-vision-fallback: true
+  description: "Fallback OpenAPI shell — real endpoints are RPC + Edge Functions in the product PRD."
+paths: {}

@@ -1,0 +1,68 @@
+/**
+ * @generated_by_model gemini-3-flash
+ * @generated_at 2026-04-09T23:10:00Z
+ * @agent_roles engineering-frontend-developer
+ * @vision_command start_sprint --sprint 1
+ * @task_id T-001
+ */
+
+@import "tailwindcss";
+
+:root {
+  --primary: #397FB6;
+  --primary-dark: #2c638e;
+  --accent: #FF9900;
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(57, 127, 182, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 153, 0, 0.1) 0px, transparent 50%);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px 0 rgba(57, 127, 182, 0.39);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(57, 127, 182, 0.45);
+}
+
+.input-field {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: white;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(57, 127, 182, 0.2);
+}

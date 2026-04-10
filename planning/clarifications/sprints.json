@@ -1,0 +1,14 @@
+{
+  "stage": "sprints",
+  "answers": {
+    "sprint_duration": "2 semanas",
+    "sprint_count": "4-6 sprints",
+    "team_roles": "Multi-disciplinario completo",
+    "success_criteria": "Aprobación del stakeholder"
+  },
+  "generated_by_model": "gemini-3.1-pro",
+  "generated_at": "2026-04-09T22:56:00Z",
+  "agent_roles": "product-product-manager",
+  "vision_command": "clarify_sprints",
+  "completedAt": "2026-04-09T22:56:00Z"
+}

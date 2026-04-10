@@ -1,0 +1,14 @@
+{
+  "stage": "brief",
+  "answers": {
+    "brief_tone": "Mixto (Ejecutivo y Técnico)",
+    "brief_audience": "Equipo técnico y Stakeholders",
+    "brief_scope": "MVP + roadmap",
+    "brief_priority": "Balance entre calidad y velocidad"
+  },
+  "generated_by_model": "gemini-3.1-pro",
+  "generated_at": "2026-04-09T22:56:00Z",
+  "agent_roles": "product-product-manager",
+  "vision_command": "clarify_brief",
+  "completedAt": "2026-04-09T22:56:00Z"
+}
